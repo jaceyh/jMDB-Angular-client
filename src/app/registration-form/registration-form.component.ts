@@ -20,12 +20,19 @@ export class RegistrationFormComponent implements OnInit{
 
     @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
+    token : any = localStorage.getItem('token');
+
     constructor(
         public fetchApiData: FetchApiDataService,
         public dialogRef: MatDialogRef<RegistrationFormComponent>,
         public snackBar: MatSnackBar) { }
     
     ngOnInit(): void {
+        if( this.token !== null ){
+            this.userData = JSON.parse(localStorage.getItem('user') || '');
+            this.userData.Password = '';
+            console.log(this.userData);
+        }
     }
 
     // This is the function responsible for sending the form inputs to the backend
