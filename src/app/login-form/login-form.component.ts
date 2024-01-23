@@ -21,25 +21,26 @@ export class LoginFormComponent implements OnInit {
 constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<LoginFormComponent>,
-    public snackBar: MatSnackBar) {}
+    public snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
         
     }
-loginUser(): void {
-    this.fetchApiData.userLogin(this.loginData).subscribe((result) => {
-        //logic for successful login goes here
-        console.log(result);
-        localStorage.setItem('user', JSON.stringify(result.user));
-        localStorage.setItem('token', result.token);
-        this.dialogRef.close();
-        this.snackBar.open(result, 'User Logged In', {
-            duration: 2000
+
+    loginUser(): void {
+        this.fetchApiData.userLogin(this.loginData).subscribe((response) => {
+            //logic for successful login goes here
+            console.log(response);
+            localStorage.setItem('user', JSON.stringify(response.user));
+            localStorage.setItem('token', response.token);
+            this.dialogRef.close();
+            this.snackBar.open('User successfully logged in.', 'OK', {
+                duration: 2000
+            });
+        }, (response) => {
+            this.snackBar.open(response, 'OK', {
+                duration: 2000
+            });
         });
-    }, (response) => {
-        this.snackBar.open(response, 'OK', {
-            duration: 2000
-        });
-    });
-}   
+    }   
 }
