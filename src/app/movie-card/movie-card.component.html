@@ -1,0 +1,37 @@
+<div style="display: flex;">
+<mat-card 
+*ngFor="let movie of movies; let i=index;"
+style="flex: 1 1 auto;"
+class="movie-card"
+role="group"
+>
+<mat-card-header>
+    <mat-card-title class="movie-name">{{movie.Name}}</mat-card-title>
+    <mat-card-subtitle>{{movie.Director.Name}}</mat-card-subtitle>
+</mat-card-header>
+        <img src={{movie.ImagePath}} alt="Photo of {{movie.Name}}" class="movie-poster"/>
+        <mat-dialog-content>
+        <mat-card-actions>
+            <button
+                mat-button
+                color="primary"
+            >
+                Genre
+            </button>
+            <button
+                mat-button
+                color="primary"
+            >
+                Director
+            </button>
+            <button
+                mat-button
+                color="primary"
+            >
+                Synopsis
+            </button>
+            <mat-icon>favorite_border</mat-icon>
+        </mat-card-actions>
+    </mat-dialog-content>
+</mat-card>
+</div>

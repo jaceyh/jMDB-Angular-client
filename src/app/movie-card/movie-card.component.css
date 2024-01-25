@@ -1,0 +1,18 @@
+.movie-card {
+  max-width: 400px;
+  max-height: 600px;
+}
+
+.movie-name {
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.movie-poster {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}/*# sourceMappingURL=movie-card.component.css.map */
