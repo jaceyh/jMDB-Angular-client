@@ -1,20 +1,34 @@
+.movie-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-image: linear-gradient(to bottom right, white, #FFD54F);
+}
+
 .movie-card {
   max-width: 400px;
-  max-height: 600px;
+  max-height: 700px;
   padding: 5px;
-  margin: 5px;
+  margin: 10px;
+  flex: 1 1 auto;
+  align-content: space-between;
 }
 
 .movie-name {
   font-weight: bolder;
   font-size: larger;
+  margin-bottom: 5px;
 }
 
 .movie-poster {
   max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
   max-width: fit-content;
-  max-height: -webkit-fit-content;
-  max-height: -moz-fit-content;
-  max-height: fit-content;
+}
+
+.btn-container {
+  float: inline-end;
+}
+
+.icon {
+  color: crimson;
 }/*# sourceMappingURL=movie-card.component.css.map */
