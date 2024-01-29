@@ -1,0 +1,63 @@
+<main>
+    <div class="header-container">
+        <h1>
+            Hello, {{user.username}}.
+        </h1>
+    </div>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Click to view your Account Info.
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="userData"></p>
+    </mat-expansion-panel>
+    <div class="update-section">
+            <button class="btn"
+              mat-raised-button
+              (click)="openUpdateUserDialog()"
+              style="margin-right: 10px; margin-bottom: 10px"
+              color="primary"
+            >
+              Update Your Info?
+            </button>
+    </div>
+    <mat-card class="update-container">
+        <mat-card-header>
+            <mat-card-title> View Your Info </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form>
+                <mat-form-field>
+                    <input
+                    matInput
+                    [(ngModel)]="userData.Username"
+                    placeholder="New Username"
+                    type="text"
+                    name="New Username"
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                    matInput
+                    [(ngModel)]="userData.Password"
+                    type = "password"
+                    placeholder="New Password"
+                    name="New Password"
+                    >
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button
+            mat-raised-button
+            (click)="updateUser()"
+            color="primary"
+            >
+            Update
+            </button>
+        </mat-card-actions>
+    </mat-card>
+       
+
+</main>
