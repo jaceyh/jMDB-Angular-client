@@ -25,9 +25,6 @@ export class UserUpdateFormComponent implements OnInit {
         public dialogRef: MatDialogRef<UserUpdateFormComponent>,
         public snackBar: MatSnackBar,
         public router: Router,
-        public name: string,
-        public password: string,
-        public email: EmailValidator, 
     ){}
 
     ngOnInit(): void {

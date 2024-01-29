@@ -1,0 +1,26 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: #8250FB;
+    color: white;
+    padding: 2rem;
+    box-shadow: 1px 3px 10px #cebd9b;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .navbar-logo {
+    text-decoration: none;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+
+  button {
+    font-size: large;
+    letter-spacing: 1px;
+
+  }
