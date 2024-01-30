@@ -11,45 +11,28 @@
                 Click to view your Account Info.
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p class="userData"></p>
+        <mat-card class="info-container">
+            <mat-card-header>
+                <mat-card-title> Your User Info </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p class="username"
+                [(ngModel)]="userData.Username"></p>
+                <p class="password"
+                [(ngModel)]="userData.Password">{{userData.Password}}</p>
+                <p class="email"
+                [(ngModel)]="userData.Email"></p>
+            </mat-card-content>
+        </mat-card>
     </mat-expansion-panel>
     <div class="update-section">
-            <button class="btn"
-              mat-raised-button
-              (click)="openUpdateUserDialog()"
-              style="margin-right: 10px; margin-bottom: 10px"
-              color="primary"
-            >
-              Update Your Info?
-            </button>
+        <button class="btn"
+          mat-raised-button
+          (click)="openUpdateUserDialog()"
+          style="margin-right: 10px; margin-top: 20px"
+          color="primary"
+        >
+          Update Your Info?
+        </button>
     </div>
-    <mat-card class="update-container">
-        <mat-card-header>
-            <mat-card-title> View Your Info </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <form>
-                <mat-form-field>
-                    <input
-                    matInput
-                    [(ngModel)]="userData.Username"
-                    placeholder="New Username"
-                    type="text"
-                    name="New Username"
-                    >
-                </mat-form-field>
-                <mat-form-field>
-                    <input
-                    matInput
-                    [(ngModel)]="userData.Password"
-                    type = "password"
-                    placeholder="New Password"
-                    name="New Password"
-                    >
-                </mat-form-field>
-            </form>
-        </mat-card-content>
-    </mat-card>
-       
-
 </main>
