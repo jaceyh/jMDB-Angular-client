@@ -11,14 +11,16 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-user-update-form',
   templateUrl: './user-update-form.component.html',
   styleUrl: './user-update-form.component.scss'
 })
+
 export class UserUpdateFormComponent implements OnInit {
 
-    @Input() userData = { Username: '', Password: '', Email: ''} 
+    @Input() userData = { Username: '', Password: '', Email: ''}
 
     constructor(
         public fetchApiData: FetchApiDataService,
@@ -28,13 +30,15 @@ export class UserUpdateFormComponent implements OnInit {
     ){}
 
     ngOnInit(): void {
-        
+
     }
 
     updateUser(): void {
+        this.fetchApiData.getUser(this.userData);
         this.fetchApiData.updateUser(this.userData).subscribe((response)=> {
             console.log(response);
             localStorage.setItem('user', JSON.stringify(response.user));
+            console.log(response.user);
             this.dialogRef.close();
             this.snackBar.open('User successfully updated.', 'OK', {
                 duration: 2500

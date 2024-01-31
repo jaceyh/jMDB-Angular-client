@@ -1,9 +1,9 @@
 <main>
     <app-nav-bar></app-nav-bar>
     <div class="header-container">
-        <h1>
-            Hello, {{user.username}}.
-        </h1>
+        <h3>
+            Hello, welcome to your profile.
+        </h3>
     </div>
     <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
@@ -16,12 +16,9 @@
                 <mat-card-title> Your User Info </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <p class="username"
-                [(ngModel)]="userData.Username"></p>
-                <p class="password"
-                [(ngModel)]="userData.Password">{{userData.Password}}</p>
-                <p class="email"
-                [(ngModel)]="userData.Email"></p>
+                <p class="username">{{user.username}}</p>
+                <p class="password"></p>
+                <p class="email"></p>
             </mat-card-content>
         </mat-card>
     </mat-expansion-panel>

@@ -3,8 +3,8 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background-color: #FF8D00;
-  color: white;
+  background-image: linear-gradient(#8250FB, #dbb2fd, #8250FB);
+  color: rgb(8, 1, 29);
   padding: 2rem;
   box-shadow: 1px 3px 10px #cebd9b;
 }
@@ -15,12 +15,11 @@
 
 .navbar-logo {
   text-decoration: none;
-  font-size: 24px;
+  font-size: 28px;
   letter-spacing: 2px;
   font-weight: 500;
 }
 
 button {
-  font-size: large;
   letter-spacing: 1px;
 }/*# sourceMappingURL=nav-bar.component.css.map */

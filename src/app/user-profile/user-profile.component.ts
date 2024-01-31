@@ -39,6 +39,7 @@ export class UserProfileComponent implements OnInit {
 
     ngOnInit(): void {
         const user = this.getUser();
+        console.log(user);
 
         if (!user._id) {
             this.router.navigate(['welcome']);
@@ -62,10 +63,8 @@ export class UserProfileComponent implements OnInit {
         return JSON.parse(localStorage.getItem('user') || '{}');
     }
 
-    /**
-     * Opens Update User Dialog
-     * ---code for expansion panel goes here
-     */
+    // Populates User Info
+    
 
     // This function will open the dialog when the update button is clicked
     openUpdateUserDialog(): void {
