@@ -25,6 +25,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserUpdateFormComponent } from './user-update-form/user-update-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { DirectorDialogComponent } from './director-dialog/director-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     UserProfileComponent,
     UserUpdateFormComponent,
-    NavBarComponent
+    NavBarComponent,
+    DirectorDialogComponent
   ],
   imports: [
     AppRoutingModule,

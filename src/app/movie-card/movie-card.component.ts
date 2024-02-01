@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 
+import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -37,6 +39,16 @@ export class MovieCardComponent {
       });
     }
 
+    getDirector(Name: string, Bio: string, Birthdate: string): void {
+        this.dialog.open(DirectorDialogComponent, {
+          data: {
+            Name: Name,
+            Bio: Bio,
+            Birthdate: Birthdate
+          },
+          width: '400px',
+        });
+      }
 
     /**
     * This will add a movie to the user's list of favorites

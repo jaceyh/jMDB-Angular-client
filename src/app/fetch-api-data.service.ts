@@ -9,8 +9,6 @@ const apiUrl = 'https://jmdb.herokuapp.com/';
   providedIn: 'root'
 })
 export class FetchApiDataService {
-   //**  Username: any; */
-
     // Inject the HttpClient module to the constructor params
     // This will provide HttpClient to the entire class, making it available via this.http
     constructor(private http: HttpClient) { }
@@ -75,7 +73,7 @@ export class FetchApiDataService {
     getDirector(directorName: any): Observable<any> {
         const token = localStorage.getItem('token');
         console.log(directorName);
-        return this.http.post<any>(apiUrl + 'movies/director/', directorName, {
+        return this.http.post<any>(apiUrl + 'director/', directorName, {
             headers: new HttpHeaders({
             Authorization: 'Bearer ' + token,
             })

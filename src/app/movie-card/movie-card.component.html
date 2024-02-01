@@ -23,6 +23,10 @@ role="group"
             <button
                 mat-button
                 color="primary"
+                (click)="getDirector(
+                    movie.Directors[0].Name, 
+                    movie.Directors[0].Bio, 
+                    movie.Directors[0].Birthdate)"
             >
                 Director
             </button>
