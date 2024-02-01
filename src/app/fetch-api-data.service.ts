@@ -167,7 +167,7 @@ export class FetchApiDataService {
 
         const token = localStorage.getItem('token')
 
-        return this.http.put(apiUrl + 'users/' + user.Username,  { headers: new HttpHeaders({
+        return this.http.put(apiUrl + 'users/' + user.Username, updatedUser, { headers: new HttpHeaders({
             Authorization: 'Bearer ' + token,
             })
         }).pipe(
