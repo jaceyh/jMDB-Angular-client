@@ -55,16 +55,12 @@ export class UserProfileComponent implements OnInit {
     }
 
 
-    /**
-    * This method will get the user's data
-    * @returns user's data
-    */
+    // gets user data, returns user data
     getUser(): User {
         return JSON.parse(localStorage.getItem('user') || '{}');
     }
-
     // Populates User Info
-    
+
 
     // This function will open the dialog when the update button is clicked
     openUpdateUserDialog(): void {
