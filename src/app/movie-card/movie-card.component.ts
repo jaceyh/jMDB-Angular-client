@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 
 
 import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
+import { TagDialogComponent } from '../tag-dialog/tag-dialog.component';
+import { MovieDetailsDialogComponent } from '../movie-details-dialog/movie-details-dialog.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -39,16 +41,37 @@ export class MovieCardComponent {
       });
     }
 
-    getDirector(Name: string, Bio: string, Birthdate: string): void {
+    getMovieDetails(Name: string, Description: string): void {
+        this.dialog.open(MovieDetailsDialogComponent, {
+            data: {
+                Name: Name,
+                Description: Description,
+            }
+        })
+
+    }
+
+    getDirector(Name: string, Bio: string): void {
         this.dialog.open(DirectorDialogComponent, {
           data: {
             Name: Name,
             Bio: Bio,
-            Birthdate: Birthdate
           },
           width: '400px',
         });
-      }
+    }
+
+    getTag(Name: string, Description: string, Name2: string, Description2: string): void {
+        this.dialog.open(TagDialogComponent, {
+            data: [{
+                Name: Name,
+                Description: Description,
+            },{
+                Name: Name2,
+                Description: Description2,
+            }]
+        })
+    }
 
     /**
     * This will add a movie to the user's list of favorites

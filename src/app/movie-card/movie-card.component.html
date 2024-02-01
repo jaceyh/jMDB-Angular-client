@@ -17,22 +17,23 @@ role="group"
             <button
                 mat-button
                 color="primary"
+                (click)="getTag(movie.Tags[0].Name, movie.Tags[0].Description, movie.Tags[1].Name, movie.Tags[1].Description)"
             >
-                Genre
+                Tags
             </button>
             <button
                 mat-button
                 color="primary"
                 (click)="getDirector(
-                    movie.Directors[0].Name, 
-                    movie.Directors[0].Bio, 
-                    movie.Directors[0].Birthdate)"
+                    movie.Director[0].Name, 
+                    movie.Director[0].Bio)"
             >
                 Director
             </button>
             <button
                 mat-button
                 color="primary"
+                (click)="getMovieDetails(movie.Name, movie.Description)"
             >
                 Summary
             </button>

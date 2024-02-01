@@ -1,0 +1,10 @@
+.director-close-button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.director-dialog-title {
+  padding-left: 1.25rem;
+}/*# sourceMappingURL=director-dialog.component.css.map */

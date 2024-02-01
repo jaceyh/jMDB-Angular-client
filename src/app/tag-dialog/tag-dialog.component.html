@@ -1,0 +1,20 @@
+<mat-card class="tag-dialog">
+    <button
+      class="tag-close-button"
+      mat-stroked-button
+      aria-label="Close the movie' tag details button"
+      mat-dialog-close
+      color="primary"
+    >
+      X
+    </button>
+    <br />
+    <mat-dialog-content class="tag-dialog-content">
+        <h4>{{ data[0].Name }}</h4>
+            <p>{{ data[0].Description }}</p>
+            <br />
+        <h4>{{ data[1].Name }}</h4>
+            <p>{{ data[1].Description }}</p>
+            <br />
+    </mat-dialog-content>
+  </mat-card>

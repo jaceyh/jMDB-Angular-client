@@ -26,6 +26,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserUpdateFormComponent } from './user-update-form/user-update-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DirectorDialogComponent } from './director-dialog/director-dialog.component';
+import { TagDialogComponent } from './tag-dialog/tag-dialog.component';
+import { MovieDetailsDialogComponent } from './movie-details-dialog/movie-details-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -45,7 +47,9 @@ const appRoutes: Routes = [
     UserProfileComponent,
     UserUpdateFormComponent,
     NavBarComponent,
-    DirectorDialogComponent
+    DirectorDialogComponent,
+    TagDialogComponent,
+    MovieDetailsDialogComponent
   ],
   imports: [
     AppRoutingModule,

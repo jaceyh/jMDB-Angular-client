@@ -1,0 +1,10 @@
+.details-close-button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.details-dialog-title {
+  padding-left: 1.25rem;
+}/*# sourceMappingURL=movie-details-dialog.component.css.map */
