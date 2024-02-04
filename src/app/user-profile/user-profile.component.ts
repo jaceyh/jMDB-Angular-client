@@ -9,14 +9,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { UserUpdateFormComponent } from '../user-update-form/user-update-form.component'
 
-type User = {
-    _id?: string;
-    username?: string;
-    password?: string;
-    email?: string;
-    favoriteMovies?: [];
-  };
-
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -25,9 +17,11 @@ type User = {
 
 export class UserProfileComponent implements OnInit {
     
-    user: User = {};
+    user: any = {};
+    movies: any[] = [];
+    FavMovies: any[] = [];
 
-    @Input() userData = {Username: '', Password: '', Email: ''};
+    @Input() userData = {Username: '', Password: '', Email: '', Birthdate: '', FavMovies: [] };
 
     constructor(
         public fetchApiData: FetchApiDataService,
@@ -38,28 +32,43 @@ export class UserProfileComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        const user = this.getUser();
-        console.log(user);
-
-        if (!user._id) {
-            this.router.navigate(['welcome']);
-            return;
-        }
-      
-        this.user = user;
-        this.userData = {
-            Username: user.username || '',
-            Email: user.email || '',
-            Password: '',
-        };
+        this.getProfile();
+        this.getFavMovies();
     }
 
-
-    // gets user data, returns user data
-    getUser(): User {
+    //gets user data, returns user data
+    getUser(): void {
         return JSON.parse(localStorage.getItem('user') || '{}');
     }
+
+
     // Populates User Info
+    getProfile(): void {
+        this.user = this.fetchApiData.getUser();
+        this.userData.Username = this.user.Username;
+        this.userData.Email = this.user.Email;
+        this.userData.Birthdate = this.user.Birthday;
+        this.fetchApiData.getAllMovies().subscribe((response) => {
+            this.FavMovies = response.filter((movie: any) => this.user.FavMovies.includes(movie._id));
+    });
+    }
+
+    // this function will get all movies
+    getMovies(): void {
+        this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+            this.movies = resp;
+            console.log(this.movies);
+            return this.movies;
+        });
+    }
+
+    // this function will get users' fav movies
+    getFavMovies(): void {
+        this.user = this.fetchApiData.getUser();
+        this.userData.FavMovies = this.user.FavMovies;
+        this.FavMovies = this.user.FavoriteMovies;
+        console.log('Fav Movies in getFavMovie', this.FavMovies);
+    }
 
 
     // This function will open the dialog when the update button is clicked
@@ -68,25 +77,6 @@ export class UserProfileComponent implements OnInit {
             width: '280px'
         });
     }
-
-    /**
-    * This method will update the user's data
-    * @returns user's data
-    * @returns updated user's data saved to local storage
-    * @returns user notified of success
-    * @returns user notified of error
-
-    updateUser(): void {
-        this.fetchApiData.updateUser(this.userData).subscribe((result) => {
-            console.log(result);
-            localStorage.setItem('user', JSON.stringify(result));
-            this.user = result;
-            this.snackBar.open('Data successfully updated!', 'OK', {
-                duration: 2000,
-            });
-        });
-    }
-        */
 
     /**
      * This method will delete the user's account

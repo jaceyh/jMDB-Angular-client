@@ -37,10 +37,19 @@ role="group"
             >
                 Summary
             </button>
-            <a
-            class="icon">
+            <button
+            class="icon"
+            mat-icon-button
+            color="accent"
+            (click)="addFavorite(movie._id)">
                 <mat-icon>favorite_border</mat-icon>
-            </a>
+            </button>
+            <button
+            class="icon"
+            mat-icon-button
+            color="accent">
+                <mat-icon>favorite</mat-icon>
+            </button>
         </mat-card-actions>
     </mat-dialog-content>
 </mat-card>

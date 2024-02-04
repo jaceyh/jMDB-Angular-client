@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
 
-    @Input() loginData = { Username: '', Password: ''};
+    @Input() userData = { Username: '', Password: ''};
 
 constructor(
     public fetchApiData: FetchApiDataService,
@@ -33,20 +33,21 @@ constructor(
     }
 
     loginUser(): void {
-        this.fetchApiData.userLogin(this.loginData).subscribe((response) => {
+        this.fetchApiData.userLogin(this.userData).subscribe((response) => {
             //logic for successful login goes here
             console.log(response);
             localStorage.setItem('user', JSON.stringify(response.user));
             localStorage.setItem('token', response.token);
+
             this.dialogRef.close();
             this.snackBar.open('User successfully logged in.', 'OK', {
-                duration: 2000
+                duration: 2500
             });
             // successful login done
             this.router.navigate(['movies']);
         }, (response) => {
             this.snackBar.open(response, 'OK', {
-                duration: 2000
+                duration: 2500
             });
         });
     }   

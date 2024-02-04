@@ -15,8 +15,11 @@ import { MovieDetailsDialogComponent } from '../movie-details-dialog/movie-detai
   templateUrl: './movie-card.component.html',
   styleUrl: './movie-card.component.scss'
 })
+
 export class MovieCardComponent {
     movies: any[] = [];
+    favorites: any[] = [];
+
     constructor(
         public fetchApiData: FetchApiDataService,
         public snackBar: MatSnackBar,
@@ -73,17 +76,43 @@ export class MovieCardComponent {
         })
     }
 
-    /**
-    * This will add a movie to the user's list of favorites
-    * @param id 
-    * @returns success message
-    */
-    addFavorite(id: string): void {
-        this.fetchApiData.addFavMovie(id).subscribe(
+    getFavMovies(): void {
+        this.fetchApiData.getUser().subscribe((resp: any) => {
+            console.log();
+            if (resp.user && resp.user.FavMovies) {
+                this.favorites = resp.user.FavMovies;
+            } else {
+                this.favorites = []; // set empty array if data is null
+            }
+        }, 
+        (error: any) => {
+            console.error('Error fetching user data:', error);
+            this.favorites = []; // set empty array on error
+        }
+        );
+    }
+
+    addFavorite(movieId: string): void {
+        this.fetchApiData.addFavMovie(movieId).subscribe(
       () => {
          this.snackBar.open('Added to favorite list', 'OK', {
           duration: 2000
          })
       })
+    }
+
+    // will check if movie is already in users' favorites
+    isFavorite(movieId: string): boolean {
+        return this.fetchApiData.isFavMovie(movieId)
+    }
+
+    removeFavorite(id: string): void {
+        this.fetchApiData.deleteFavMovie(id).subscribe(
+          () => {
+            this.snackBar.open('Removed from favorite list', 'OK', {
+              duration: 2000
+            })
+          }
+        )
     }
 }

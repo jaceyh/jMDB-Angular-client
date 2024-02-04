@@ -25,14 +25,4 @@
   max-width: fit-content;
   padding: 10px;
   margin: 10px;
-}
-
-.btn-container {
-  float: inline-end;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-}
-
-.icon {
-  color: crimson;
-}/*# sourceMappingURL=movie-card.component.css.map */
+}/*# sourceMappingURL=user-profile.component.css.map */

@@ -103,15 +103,10 @@ export class FetchApiDataService {
     // Making the api call for the get one user endpoint
     // params: username 
     // returns: an observable with a user object
-    getUser(userName: any): Observable<any> {
-        const token = localStorage.getItem('token');
-        return this.http.get(apiUrl + 'users/' + userName, { 
-            headers: new HttpHeaders({
-                Authorization: 'Bearer ' + token,
-            })
-        }).pipe(<any>(this.extractResponseData),
-            catchError(this.handleError)
-        );
+
+    getUser(): Observable<any> {
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        return user;
     }
 
     // Making api call for the user's favorite movies endpoint
@@ -136,9 +131,12 @@ export class FetchApiDataService {
     // returns: an observable with a user object
     addFavMovie(movieId: string): Observable<any> {
         const user = JSON.parse(localStorage.getItem('user') || '{}');
+        console.log(user);
         const token = localStorage.getItem('token');
+        console.log(token);
         user.FavMovies.push(movieId);
         localStorage.setItem('user', JSON.stringify(user));
+        console.log(user);
         return this.http.post(apiUrl + 'users/' + user.Username, + '/movies/' + movieId, { 
             headers: new HttpHeaders(
                 {

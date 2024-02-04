@@ -13,12 +13,18 @@
         </mat-expansion-panel-header>
         <mat-card class="info-container">
             <mat-card-header>
-                <mat-card-title> Your User Info </mat-card-title>
+                <mat-card-title>Your User Info </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <p class="username">{{user.username}}</p>
-                <p class="password"></p>
-                <p class="email"></p>
+                    <p class="username"> Username: {{userData.Username}}</p>
+                    <p class="password">
+                    Password: {{userData.Password}}
+                    </p>
+                    <p class="email">
+                    Email: {{userData.Email}}
+                    </p>
+                    <p class="email"> Birthdate:{{userData.Birthdate}}
+                    </p>
             </mat-card-content>
         </mat-card>
     </mat-expansion-panel>
@@ -31,5 +37,25 @@
         >
           Update Your Info?
         </button>
+        <button
+        mat-raised-button
+        class="btn"
+        (click)="deleteUser()"
+        style="margin-right: 10px; margin-top: 20px"
+        color="warn"
+        >
+        Delete Your Account?
+        </button>
+    </div>
+    <div class="movie-container">
+        <h3>Your Favorite Movies</h3>
+        <mat-card *ngFor="let movie of FavMovies"
+        class="movie-card">
+        <mat-card-header>
+            <mat-card-title class="movie-name">{{movie.Name}}</mat-card-title>
+            <mat-card-subtitle class="director-name">{{movie.Director[0].Name}}</mat-card-subtitle>
+        </mat-card-header>
+                <img src="{{movie.ImagePath}}" alt="Photo of {{movie.Name}}" class="movie-poster"/>
+    </mat-card>
     </div>
 </main>
