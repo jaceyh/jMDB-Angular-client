@@ -25,4 +25,10 @@
   max-width: fit-content;
   padding: 10px;
   margin: 10px;
+}
+
+.remove-btn {
+    float: inline-end;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
 }/*# sourceMappingURL=user-profile.component.css.map */
