@@ -20,6 +20,8 @@ export class MovieCardComponent {
     movies: any[] = [];
     favorites: any[] = [];
 
+    user: any = {}
+
     constructor(
         public fetchApiData: FetchApiDataService,
         public snackBar: MatSnackBar,
@@ -28,11 +30,6 @@ export class MovieCardComponent {
         ) { }
   
     ngOnInit(): void {
-        const user = localStorage.getItem('user');
-        if (!user) {
-            this.router.navigate(['welcome']);
-            return;
-        }
         this.getMovies();
     }
   
@@ -76,11 +73,22 @@ export class MovieCardComponent {
         })
     }
 
+    //gets user data, returns user data
+    getUser(): void {
+        return JSON.parse(localStorage.getItem('user') || '{}');
+    }
+
+
+    /** 
+    * Get user info and set favorites
+    * @returns favorite movies selected by user
+    * */
     getFavMovies(): void {
-        this.fetchApiData.getUser().subscribe((resp: any) => {
-            console.log();
-            if (resp.user && resp.user.FavMovies) {
-                this.favorites = resp.user.FavMovies;
+        this.user = this.fetchApiData.getUser();
+        this.fetchApiData.getAllMovies().subscribe((response) => {
+            console.log(response);
+            if (response.user && response.user.FavMovies) {
+                this.favorites = response.user.FavMovies;
             } else {
                 this.favorites = []; // set empty array if data is null
             }
@@ -92,26 +100,38 @@ export class MovieCardComponent {
         );
     }
 
-    addFavorite(movieId: string): void {
-        this.fetchApiData.addFavMovie(movieId).subscribe(
-      () => {
-         this.snackBar.open('Added to favorite list', 'OK', {
-          duration: 2000
-         })
-      })
+    /**
+    * Check if a movie is a user's favorite already
+    * @param movieId
+    * @returns boolean
+    * */
+
+    isFavoriteMovie(movieId: string): boolean {
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        return user.FavMovies.indexOf(movieId) >= 0;
     }
 
-    // will check if movie is already in users' favorites
-    isFavorite(movieId: string): boolean {
-        return this.fetchApiData.isFavMovie(movieId)
+    public addFavorite(movieId: string): void {
+        // movie is already a favorite movie, remove it
+        if (this.isFavoriteMovie(movieId)) {
+            this.removeFavorite(movieId);
+        } else {
+            this.fetchApiData.addFavMovie(movieId).subscribe(() => {
+                this.snackBar.open('Added to favorite list', 'OK', {
+                    duration: 2000
+                })
+                this.fetchApiData.getAllMovies();
+            })             
+        }
     }
 
-    removeFavorite(id: string): void {
-        this.fetchApiData.deleteFavMovie(id).subscribe(
+    public removeFavorite(movieId: any): void {
+        this.fetchApiData.deleteFavMovie(movieId).subscribe(
           () => {
             this.snackBar.open('Removed from favorite list', 'OK', {
               duration: 2000
-            })
+            });
+            this.fetchApiData.getAllMovies();
           }
         )
     }

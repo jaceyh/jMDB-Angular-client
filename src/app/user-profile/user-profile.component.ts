@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
 
     ngOnInit(): void {
         this.getProfile();
-        this.getFavMovies();
+        //this.getFavMovies();
     }
 
     //gets user data, returns user data
@@ -46,11 +46,12 @@ export class UserProfileComponent implements OnInit {
     getProfile(): void {
         this.user = this.fetchApiData.getUser();
         this.userData.Username = this.user.Username;
+        this.userData.Password = this.user.Password;
         this.userData.Email = this.user.Email;
-        this.userData.Birthdate = this.user.Birthday;
+        this.userData.Birthdate = this.user.Birthdate;
         this.fetchApiData.getAllMovies().subscribe((response) => {
             this.FavMovies = response.filter((movie: any) => this.user.FavMovies.includes(movie._id));
-    });
+        });
     }
 
     // this function will get all movies
@@ -62,13 +63,36 @@ export class UserProfileComponent implements OnInit {
         });
     }
 
+
     // this function will get users' fav movies
     getFavMovies(): void {
         this.user = this.fetchApiData.getUser();
         this.userData.FavMovies = this.user.FavMovies;
-        this.FavMovies = this.user.FavoriteMovies;
+        this.FavMovies = this.user.FavMovies;
         console.log('Fav Movies in getFavMovie', this.FavMovies);
     }
+
+    // Function to check if movie is favMovie
+    isFav(movie: any): any {
+        const MovieID = movie._id;
+        if (this.FavMovies.some((movie) => movie === MovieID)) {
+          return true;
+        } else {
+          return false;
+        }
+    }
+
+    removeFav(movieId: any): void {
+        this.fetchApiData.deleteFavMovie(movieId).subscribe(
+          () => {
+            this.snackBar.open('Removed from favorite list', 'OK', {
+              duration: 2000
+            });
+            this.getProfile();
+          }
+        )
+    }
+
 
 
     // This function will open the dialog when the update button is clicked
@@ -96,7 +120,7 @@ export class UserProfileComponent implements OnInit {
                     duration: 3000
                 });
             })
-            this.fetchApiData.deleteUser(this.userData).subscribe((result) => {
+            this.fetchApiData.deleteUser().subscribe((result) => {
                 console.log(result);
             });
         }

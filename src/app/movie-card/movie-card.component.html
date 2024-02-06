@@ -41,14 +41,9 @@ role="group"
             class="icon"
             mat-icon-button
             color="accent"
-            (click)="addFavorite(movie._id)">
-                <mat-icon>favorite_border</mat-icon>
-            </button>
-            <button
-            class="icon"
-            mat-icon-button
-            color="accent">
-                <mat-icon>favorite</mat-icon>
+            (click)="isFavoriteMovie(movie._id) ? removeFavorite(movie._id) : addFavorite(movie._id)"
+            [ngClass]="isFavoriteMovie(movie._id) ? 'mat-flat-button' : 'mat-icon-button'">
+                <mat-icon>{{ isFavoriteMovie(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
             </button>
         </mat-card-actions>
     </mat-dialog-content>
